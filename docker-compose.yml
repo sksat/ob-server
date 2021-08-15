@@ -58,3 +58,12 @@ services:
     volumes:
       - ./alertmanager:/etc/alertmanager
     command: "--config.file=/etc/alertmanager/config.yaml"
+
+  influxdb:
+    image: influxdb
+    container_name: influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    volumes:
+      - ./influxdb:/var/lib/influxdb
