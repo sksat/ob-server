@@ -29,7 +29,7 @@ services:
     restart: always
     volumes:
       - ./cloudflared:/etc/cloudflared
-    command: tunnel --hostname ${GRAFANA_HOSTNAME} --url http://grafana:3000
+    command: tunnel --hostname ${HOSTNAME_GRAFANA} --url http://grafana:3000
 
   prometheus:
     image: prom/prometheus:v2.29.1
