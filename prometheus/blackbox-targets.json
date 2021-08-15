@@ -1,0 +1,13 @@
+[
+  {
+    "labels": {
+      "job": "blackbox"
+    },
+    "targets": [
+      "1.1.1.1",
+      "8.8.8.8",
+      "https://google.com",
+      "https://twitter.com"
+    ]
+  }
+]
