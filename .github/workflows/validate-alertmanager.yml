@@ -1,0 +1,23 @@
+name: validate alertmanager config.yml
+
+on:
+  pull_request:
+    paths:
+      - 'alertmanager/config.yml'
+      - '.github/workflows/validate-alertmanager.yml'
+
+jobs:
+  validate-alertmanager:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: validate alertmanager config.yml by amtool
+        uses: peimanja/amtoolcm-github-actions@v0.0.1
+        with:
+          amtool_actions_config: 'alertmanager/config.yml'
+          amtool_actions_version: '0.21.0'
+          amtool_actions_comment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

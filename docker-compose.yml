@@ -1,47 +1,69 @@
 version: '3.8'
+
 services:
-  prometheus:
-    image: prom/prometheus
-    container_name: prometheus
-    volumes:
-      - ./prometheus:/etc/prometheus
-    command: "--config.file=/etc/prometheus/prometheus.yaml"
-    ports:
-      - 9090:9090
-    restart: always
-  prometheus-blackbox:
-    image: prom/blackbox-exporter
-    container_name: blockbox
-    ports:
-      - 9115:9115
-    restart: always
-  alertmanager:
-    image: prom/alertmanager
-    container_name: alertmanager
-    volumes:
-      - ./alertmanager:/etc/alertmanager
-    command: "--config.file=/etc/alertmanager/config.yaml"
-    ports:
-      - 9093:9093
-    restart: always
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:8.1.1
     container_name: grafana
+    restart: always
     ports:
       - 3000:3000
-    restart: always
     volumes:
       - ./grafana.ini:/etc/grafana/grafana.ini
       - ./grafana_data:/var/lib/grafana
     environment:
-      GF_SERVER_ROOT_URL: https://grafana.sksat.net
+      GF_SERVER_ROOT_URL: https://${HOSTNAME_GRAFANA}
       GF_RENDERING_SERVER_URL: http://grafana-renderer:8081/render
       GF_RENDERING_CALLBACK_URL: http://grafana:3000/
       GF_LOG_FILTERS: grafana-renderer:debug
+
   grafana-renderer:
-    image: grafana/grafana-image-renderer:latest
+    image: grafana/grafana-image-renderer:3.0.1
+    container_name: grafana-renderer
     restart: always
     ports:
       - 8081:8081
     environment:
       ENABLE_METRICS: 'true'
+
+  grafana-tunnel:
+    image: cloudflare/cloudflared:2021.8.2
+    restart: always
+    volumes:
+      - ./cloudflared:/etc/cloudflared
+    command: tunnel --hostname ${HOSTNAME_GRAFANA} --url http://grafana:3000
+
+  prometheus:
+    image: prom/prometheus:v2.29.1
+    container_name: prometheus
+    restart: always
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/etc/prometheus
+    command: "--config.file=/etc/prometheus/prometheus.yml"
+
+  prometheus-blackbox:
+    image: prom/blackbox-exporter:v0.19.0
+    container_name: blockbox
+    restart: always
+    ports:
+      - 9115:9115
+
+  alertmanager:
+    image: prom/alertmanager:v0.22.2
+    container_name: alertmanager
+    restart: always
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    command: "--config.file=/etc/alertmanager/config.yaml"
+
+  influxdb:
+    image: influxdb:2.0.8-alpine
+    container_name: influxdb
+    restart: always
+    ports:
+      - 8086:8086
+    volumes:
+      - ./influxdb:/var/lib/influxdb
