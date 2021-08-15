@@ -3,7 +3,7 @@ name: validate alertmanager config.yml
 on:
   pull_request:
     paths:
-      - 'alertmanager/config.yaml'
+      - 'alertmanager/config.yml'
       - '.github/workflows/validate-alertmanager.yml'
 
 jobs:
