@@ -1,2 +1,3 @@
 grafana_data/
 cloudflared/cert.pem
+influxdb/
