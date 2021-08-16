@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - 'docker-compose.yml'
-      - '.github/workflows/compose-validate.yml'
+      - '.github/workflows/validate-compose.yml'
 
 jobs:
   validate-compose:
