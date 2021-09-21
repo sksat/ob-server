@@ -67,3 +67,10 @@ services:
       - 8086:8086
     volumes:
       - ./influxdb:/var/lib/influxdb
+
+  domain_exporter:
+    container_name: domain_exporter
+    image: ghcr.io/caarlos0/domain_exporter:v1.14.0
+    restart: always
+    ports:
+      - 9222:9222
