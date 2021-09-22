@@ -64,12 +64,11 @@ scrape_configs:
         replacement: domain_exporter:9222 # domain_exporter address
     static_configs:
       - targets:
-        - google.com
         - sksat.net
         - sksat.dev
         - sksat.pub
         - xn--u8jxcf8n.site
-        - yoghane.su
+        - yohane.su
         - teleka.su
         - gomika.su
         - soude.su
