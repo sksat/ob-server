@@ -33,7 +33,7 @@ services:
     command: tunnel --hostname ${HOSTNAME_GRAFANA} --url http://grafana:3000
 
   prometheus:
-    image: prom/prometheus:v2.31.0
+    image: prom/prometheus:v2.31.1
     container_name: prometheus
     restart: always
     ports:
