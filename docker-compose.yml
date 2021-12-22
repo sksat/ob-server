@@ -26,7 +26,7 @@ services:
       ENABLE_METRICS: 'true'
 
   grafana-tunnel:
-    image: cloudflare/cloudflared:2021.12.1
+    image: cloudflare/cloudflared:2021.12.2
     restart: always
     volumes:
       - ./cloudflared:/etc/cloudflared
