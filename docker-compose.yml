@@ -70,7 +70,7 @@ services:
 
   domain_exporter:
     container_name: domain_exporter
-    image: ghcr.io/caarlos0/domain_exporter:v1.15.0
+    image: ghcr.io/caarlos0/domain_exporter:v1.16.0
     restart: always
     ports:
       - 9222:9222
