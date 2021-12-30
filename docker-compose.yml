@@ -4,6 +4,7 @@ services:
   grafana:
     image: grafana/grafana:8.3.3
     container_name: grafana
+    user: "$UID:$GID"
     restart: always
     ports:
       - 3000:3000
