@@ -44,7 +44,7 @@ services:
     command: "--config.file=/etc/prometheus/prometheus.yml"
 
   prometheus-blackbox:
-    image: prom/blackbox-exporter:v0.20.0
+    image: prom/blackbox-exporter:v0.21.0
     container_name: blockbox
     restart: always
     ports:
