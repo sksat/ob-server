@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   grafana:
-    image: grafana/grafana:8.5.15
+    image: grafana/grafana:8.5.20
     container_name: grafana
     user: "$UID:$GID"
     restart: always
