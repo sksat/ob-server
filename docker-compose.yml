@@ -18,7 +18,7 @@ services:
       GF_LOG_FILTERS: grafana-renderer:debug
 
   grafana-renderer:
-    image: grafana/grafana-image-renderer:3.8.1
+    image: grafana/grafana-image-renderer:3.8.2
     container_name: grafana-renderer
     restart: always
     ports:
