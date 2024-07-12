@@ -61,7 +61,7 @@ services:
     command: "--config.file=/etc/alertmanager/config.yaml"
 
   influxdb:
-    image: influxdb:2.7.6-alpine
+    image: influxdb:2.7.7-alpine
     container_name: influxdb
     restart: always
     ports:
